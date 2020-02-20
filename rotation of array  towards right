@@ -1,0 +1,47 @@
+//rotation of array towards right
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int count=0;
+      int a,b;
+      int z;
+      
+      printf("neter how many rotations");
+      scanf("%d",&z);
+    printf("enter the size of square matrix");
+    scanf("%d %d",&a,&b);
+    int *c=(int *)malloc(a*b*sizeof(int ));
+    int *v=(int *)malloc(a*b*sizeof(int ));
+    for(int i=0;i<a;i++)
+    for(int j=0;j<b;j++)
+    scanf("%d",c+i*b+j);
+    for(int q=0;q<z;q++)
+    {
+        int t=0;
+    for(int i=0;i<a;i++)
+    {
+        count=0;
+        for(int j=i+a*b;j>=0;j=j-3)
+        {
+            if(count!=0)
+            {
+              *(v+t)= *(c+j);
+              t++;
+            }
+            count=1;
+        }
+        
+        printf("\n");
+    }
+    for(int q=0;q<a;q++)
+    for(int i=0;i<b;i++)
+   *(c+q*a+i)=*(v+q*a+i);
+   printf("\n");
+    
+    }
+for(int q=0;q<a;q++)
+    for(int i=0;i<b;i++)
+    printf("%d",*(v+q*a+i));
+    return 0;
+}
