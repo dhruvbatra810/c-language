@@ -1,0 +1,26 @@
+//reverse words in strings by dhruv batra
+#include <stdio.h>
+
+int main()
+{
+       
+char a[30]="hello world here am i";
+for(int i=0;a[i]!='\0';i++)
+ {
+     if(a[1+i]=='\0'||a[i+1]==' ')
+     {
+         int j;
+         if(a[i]==' ')
+         printf("%c",' ');
+         for( j=i;j>=0&&a[j]!=' ';j--)
+         {
+             printf("%c",a[j]);
+         }
+         
+
+     }
+     else if(a[i]==' ')
+    printf("%c",' ');
+ }
+    return 0;
+}
