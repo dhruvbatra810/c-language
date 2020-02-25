@@ -1,4 +1,4 @@
-//count the alphabets in a string in c by dhruv batra
+//count the words in a string in c by dhruv batra
 #include <stdio.h>
 
 int main()
