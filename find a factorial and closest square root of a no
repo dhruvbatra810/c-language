@@ -1,0 +1,41 @@
+//
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+    int a;
+    int c=1;
+printf("enter the no");
+scanf("%d",&a);
+for(int i=a;i>1;i--)
+{
+     c=c*i;
+}
+printf("factorial of a no=%d",c);
+//factorial (up)
+//cloest of square of a no (down)
+ int store3;
+
+int i=ceil(sqrt(a));
+
+  
+ int temp=i*i;
+ int temp2=(i-1)*(i-1);
+ int store1=temp-a;
+ int  store2=temp2-a;
+ int d1=(store1<0)?(-store1):(store1);
+ int d2=(store2<0)?(-store2):(store2);
+ if(d1>=d2)
+ 
+ 
+ 
+ {
+     store3=temp2;
+     
+ }
+ else
+ store3=temp;
+
+printf("closest square root of a given no is =%d",store3);
+return 0;
+}
