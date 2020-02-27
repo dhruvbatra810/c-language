@@ -1,0 +1,26 @@
+//print the character once in string in the fashion tehy occured
+#include<stdio.h>
+int main()
+{
+    int fresh[26]={0};
+char a[27]="aabbccdddddefzzzz";
+int b[26]={0};
+for(int i=0;a[i]!='\0';i++)
+{
+b[a[i]-97]++;
+}
+//in the fashion they have occured
+for(int i=0;i<26;i++)
+{
+    if(fresh[a[i]-97]==0)
+    {
+    printf("%c",a[i]);
+    fresh[a[i]-97]++;
+    }
+}
+
+
+
+}
+
+
