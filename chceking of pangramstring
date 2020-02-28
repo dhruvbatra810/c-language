@@ -1,0 +1,39 @@
+//chceking of pangramstring(string contaning all a-z)
+//valid for  mix  also 
+
+#include <stdio.h>
+
+int main()
+{
+    int j=0;
+    char a[100]="bcdefghijkmnlopqrstuvwxyzA";
+    int b[26]={0};
+    for(int i=0;a[i]!=0;i++)
+    {
+        if((a[i]>='a'&&a[i]<=122))
+        {
+            b[a[j]-97]++;
+            j++;
+        }
+          else if((a[i]>='A'&&a[i]<=90))
+        {
+           b[a[j]-65]++;
+            j++;   
+        }
+      
+      
+    }
+    int lele=0;
+      for(int i=0;i<=25;i++)
+        {
+            if(b[i]<1)
+            {
+                printf("no");
+                lele++;
+                break;
+            }
+        }
+    if(lele==0)
+    printf("yes");
+    return 0;
+}
