@@ -1,0 +1,30 @@
+//reversing a string but printting the words as same
+
+
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+   char a[30]="hello world how are you";
+   for(int i=strlen(a);i>=0;i--)
+   {
+       if(a[i-1]==32||i==0)
+       { 
+          
+           for(int j=i;a[j]!='\0';j++)
+           {
+               
+               if(a[j]==32)
+               {
+            
+               break;
+               }
+               printf("%c",a[j]);
+           }
+           printf(" ");
+           
+       }
+       
+   }
+    return 0;
+}
