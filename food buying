@@ -1,0 +1,48 @@
+// person buyies food and get 10% of money back ,tell the max no of money he can spend
+/*
+eg - input
+6 //no of test cases
+1 
+10
+19
+9876
+12345
+1000000000
+
+output
+1
+11
+21
+10973
+13716
+1111111111
+*/
+#include <stdio.h>
+
+int  main()
+{
+    int b;
+    scanf("%d",&b);//for no of test cases
+    for(int i=0;i<b;i++)//for no of test cases
+
+    {
+    int a;
+    int sum=0;
+    
+    scanf("%d",&a); //no input
+    while(a>=10)
+    {
+        int temp=a%10;
+       
+            int temp2=a/10;
+            int temp3=temp2;
+            temp2*=10;
+            sum+=temp2;
+            a=temp+temp3;
+        
+    }
+    sum+=a;
+    printf("%d\n",sum); //max amount he can spent
+}
+}
+
