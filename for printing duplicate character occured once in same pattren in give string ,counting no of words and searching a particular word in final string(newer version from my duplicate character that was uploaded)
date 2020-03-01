@@ -1,0 +1,161 @@
+
+/// string range from ascii 32 to 126 (by dhruv batra)
+// for printing duplicate character occured once in same pattren in give string ,counting no of words and searching a particular word in final string
+#include <stdio.h>
+#include<string.h>
+//for counting no of words
+int count(char *p,int a)
+{
+    int count =0;
+    int lele=0;
+    for(int i=0;p[i]!='\0';i++)
+    {
+        if(p[i]!=' ')
+        {
+        count++;
+        if((p[i+1]==' '||p[i+1]=='\0')&&count>=2)
+        {
+            lele++;
+            count=0;
+        }
+            
+        }
+        else
+        count=0;
+
+    }
+    return (lele);
+}
+
+//for searching word
+int is_this_there(char *str)
+{
+      char b[30]={'\0'};
+   b[0]=' ';
+   printf("enter the string\n");
+   scanf("%s",b+1);
+   int c=strlen(b);
+   b[c]=' ';
+char *point=b;
+int count =0;
+   for(int i=0;str[i]!='\0';i++)
+   {
+    if(*point==str[i])
+    {
+        point++;
+        count++;
+        if(count==c+1)
+        break;
+    }
+    else
+    {
+        count=0;
+        point=b;
+    }
+   }
+   
+
+if(count==c+1)
+printf("YEs");
+else
+printf("no");
+
+// printf("%s",b);
+
+    return 0;
+}
+int main()
+{
+    char a[150]=" !!;;zz]]b}}bBB hh 22 ~~HCc AAa ";//input string
+    int tri1[26]={0},tri2[26]={0},sc[100]={0},no[9]={0};
+    for(int i=0;a[i]!='\0';i++)
+    {
+        if(a[i]>=97&&a[i]<=122)
+        {
+            tri1[a[i]-97]++;
+        }
+        else if(a[i]>=65&&a[i]<=90)
+        {
+            tri2[a[i]-65]++;
+        }
+        else if(!(a[i]>=0&&a[i]<=31)&&!(a[i]>=65&&a[i]<=90)&&!(a[i]>=97&&a[i]<=122)&&!(a[i]>='0'&&a[i]<='9')&&a[i]!=127)
+        {
+            sc[a[i]-33]++;
+        }
+        else if(a[i]>='0'&&a[i]<='9')
+        {
+            no[a[i]-48]++;
+        }
+    }
+    //for(int i=0;i<)
+    int check[26]={0},check2[26]={0},check3[100]={0},check4[100]={0};
+    char final[150]={'\0'};
+    int j=0;
+for(int i=0;a[i]!='\0';i++)
+{
+       if(a[i]>=97&&a[i]<=122)
+       {  
+           if(tri1[a[i]-97]>1&&check[a[i]-97]==0)
+           {
+               check[a[i]-97]=1;
+               final[j]=a[i];
+               j++;
+           }
+       }
+   else if(a[i]>=65&&a[i]<=90)
+       {
+           if(tri2[a[i]-65]>1&&check2[a[i]-65]==0)
+           {
+               check2[a[i]-65]=1;
+               final[j]=a[i];
+               j++;
+           }
+       }
+               else if(!(a[i]>=0&&a[i]<=32)&&!(a[i]>=65&&a[i]<=90)&&!(a[i]>=97&&a[i]<=122)&&!(a[i]>='0'&&a[i]<='9')&&a[i]!=127)
+                {
+                    if( sc[a[i]-33]>1&&check3[a[i]-33]==0)
+                    {
+                        check3[a[i]-33]=1;
+                        final[j]=a[i];
+                        j++;
+                    }
+                }
+                
+                else if(a[i]>='0'&&a[i]<='9')
+        {
+             if( no[a[i]-48]>1&&check4[a[i]-48]==0)
+             {
+              check4[a[i]-48]=1;
+                        final[j]=a[i];
+                        j++;   
+             }
+        }
+       else if(a[i]==32)
+       {
+           final[j]=' ';
+           j++;
+       }
+
+} 
+printf("printing the string in asending oreder=%s\n",final);
+printf("printing the string in desending oreder=");
+for(int i=0;final[i]!='\0';i++)
+{
+    if(final[i+1]=='\0')
+    for(int j=i;j>=0;j--)
+  // if((final[i]>=97&&final[i]<=122)||(final[i]>=65&&final[i]<=90))
+    printf("%c",final[j]);
+   
+}
+printf("\n words in given string=%d",count(a,150));
+printf("\nwords in final string=%d",count(final,150));
+ int word;
+      printf("you want to search word,0 for no and 1 for yes");
+      scanf("%d",&word);
+ if(word)
+   {
+       is_this_there(final);
+       
+   }
+ return 0;
+}
