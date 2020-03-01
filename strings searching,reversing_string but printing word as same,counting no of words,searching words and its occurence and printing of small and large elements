@@ -3,7 +3,49 @@
 // for printing duplicate character occured once in same pattren in give string ,counting no of words and searching a particular word in final string
 #include <stdio.h>
 #include<string.h>
+
+//printing the largest and smallest word in string
+
+int largest_word(char str[120])
+{
+    char large[20]={'\0'},small[20]={'\0'},check[20]={'\0'};
+    int len=strlen(str);
+    str[len]=' ';
+    int countcc=0,countss=strlen(str) ,countll=0,llll=0,countt=0;
+    int j=0;
+    for(int i=0;str[i]!='\0';i++)
+    {
+        if(str[i]>32&&str[i]<127)
+        { 
+            check[j]=str[i];
+            countcc++;
+            j++;
+           
+        }
+        
+        else if(str[i]==' '&&countcc>=1)
+        {
+            if(countcc>countll)
+            {
+                countll=countcc;
+                strncpy(large,check,countcc);
+            }
+            if(countss>countcc)
+            {
+                countss=countcc;
+                strncpy(small,check,countcc);
+            }
+            countcc==0;
+            j=0;
+            
+        }
+    }
+    printf("large word=%s small word=%s",large,small);
+}
+
+
 //reversing_string but printing word as same
+
 int reversing_string(char *a)
 {  printf("\n");
    for(int i=strlen(a);i>=0;i--)
@@ -28,7 +70,9 @@ int reversing_string(char *a)
    }
     return 0;
 }
+
 //for counting no of words
+
 int count(char *p,int a)
 {
     int count =0;
@@ -52,18 +96,20 @@ int count(char *p,int a)
     return (lele);
 }
 
+
 //for searching word and its no of occurence
+
 int is_this_there(char *str)
 {
       char b[30]={'\0'};
    b[0]=' ';
    int sum=0;
    printf("enter the string\n");
-   scanf("%s",b+1);
+   scanf(" %s",b+1);
    int c=strlen(b);
    b[c]=' ';
 char *point=b;
-int count =0;
+int count=0;
    for(int i=0;str[i]!='\0';i++)
    {
     if(*point==str[i])
@@ -94,9 +140,11 @@ printf("no  string does not exsist");
 printf("\nand occurence of specific string in given string=%d",sum);
     return 0;
 }
+
+
 int main()
 {
-    char a[150]=" 223344556677111222 ";//input string should contain space at beginig and at the end of last word
+    char a[150]=" i love ishita chopra ";//input string should contain space at beginig and at the end of last word
     int tri1[26]={0},tri2[26]={0},sc[100]={0},no[9]={0};
     for(int i=0;a[i]!='\0';i++)
     {
@@ -106,7 +154,7 @@ int main()
         }
         else if(a[i]>=65&&a[i]<=90)
         {
-            tri2[a[i]-65]++;
+            tri2[a[i]-65]++;                                                                                                           //counting the alphabets,no,and all the special symbol
         }
         else if(!(a[i]>=0&&a[i]<=31)&&!(a[i]>=65&&a[i]<=90)&&!(a[i]>=97&&a[i]<=122)&&!(a[i]>='0'&&a[i]<='9')&&a[i]!=127)
         {
@@ -131,7 +179,7 @@ for(int i=0;a[i]!='\0';i++)
                final[j]=a[i];
                j++;
            }
-       }
+       }                                                                //putting the duplicate character in final string according to given string order
    else if(a[i]>=65&&a[i]<=90)
        {
            if(tri2[a[i]-65]>1&&check2[a[i]-65]==0)
@@ -184,9 +232,13 @@ printf("\nwords in final string=%d",count(final,150));
       scanf("%d",&word);
  if(word)
    {
-       is_this_there(final);
+       is_this_there(a);           //callign of function for searching and printing the no of occurence
        
    }
-   reversing_string(final); 
+   reversing_string(final);   //calling of function for reversing_string but printing word as same
+
+   printf("\n");
+   largest_word(final);  // calling of function for printing the largest and smallest word in string
+
  return 0;
 }
