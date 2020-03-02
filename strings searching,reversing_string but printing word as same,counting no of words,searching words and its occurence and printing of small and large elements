@@ -29,11 +29,13 @@ int largest_word(char str[120])
             {
                 countll=countcc;
                 strncpy(large,check,countcc);
+                large[countcc]='\0';
             }
             if(countss>countcc)
             {
                 countss=countcc;
                 strncpy(small,check,countcc);
+                small[countcc]='\0';
             }
             countcc==0;
             j=0;
