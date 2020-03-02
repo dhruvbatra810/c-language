@@ -1,0 +1,81 @@
+//what is the question
+// eg you are given string of 'l' and 'r' character for l you have to move left and for r you have to move right on ( x axis )
+//what will be output containing 
+// new distance of you form point 0 sum with each step you'v moved(but eg if you go from 0 to 1 (as r occured) and go form 1 to 0 (as l occured) this is counted as 1 (and it dosent matter how many time has (0-1) or (1-0) occured it is always counted as 1)
+// eg if we input string "rrllrrll" it will be printing 2 as p comes to back on its position and it has coverd (0-1) and (1-2) so that 2 position are counted
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+   char str[20]="rrllrrll"; 
+   int b[40]={0};
+   int p=0, previous=0,now=0,countforloop=0;
+   for(int i=0;str[i]!='\0';i++)
+   {
+       if((p==0&&str[i]=='l')||p<0)
+       {
+           if(str[i]=='l')
+           {
+               countforloop++;
+               previous=p;
+               p--;
+               now=p;
+               b[i]=previous*10+now;
+           }
+           else
+           { 
+               countforloop++;
+               previous=p;
+               p++;
+               now=p;
+               b[i]=now*10+previous;
+           }
+       }
+       
+       
+       if((p==0&&str[i]=='r')||p>0)
+       {
+       if(str[i]=='l')
+       {
+           countforloop++;
+           previous=p;
+           p--; 
+           now=p;
+            b[i]=now*10+previous;
+           
+       }
+       else
+       {
+           countforloop++;
+           previous=p;
+           p++; 
+           now=p;
+           b[i]=previous*10+now;
+       }
+       }
+   }
+  // printf("%d\n",p);
+  // for(int i=0;i<countforloop;i++)
+//   printf("%d\n",b[i]);
+//int ll=strlen(str);
+  int forp[100]={0},forn[100]={0},cs=0,cl=0;
+  for(int i=0;i<countforloop;i++)
+  {
+      if(b[i]<0&&forn[-(b[i]%10)]==0)
+      {
+          int temp=b[i]%10;
+          forn[-temp]=b[i];
+          cs++;
+      }
+      else if(b[i]>0&&forp[(b[i]%10)]==0)
+      {
+          int temp=b[i]%10;
+          forp[temp]=b[i];
+          cl++;
+      }
+          
+      }
+ int zz=(p<0)?-p:p;
+printf("%d",cs+cl+zz);
+    return 0;
+}
