@@ -116,13 +116,16 @@ int count=0;
    {
     if(*point==str[i])
     {
-        point++;
+         point++;                                     //   tom kaldsalks tom tom tom 
         count++;
-        if(count==c+1)
+        if(count==c+1)                               // tom
         {
-            sum+=count;
+            sum++;
             count=0;
+           // point=b;
+           i--;
         }
+      
     }
     else
     {
@@ -132,7 +135,7 @@ int count=0;
    }
    
 
-if(sum>=c+1)
+if(sum>=1)
 printf("YEs string exsist");
 else
 printf("no  string does not exsist");
@@ -142,7 +145,6 @@ printf("no  string does not exsist");
 printf("\nand occurence of specific string in given string=%d",sum);
     return 0;
 }
-
 
 int main()
 {
