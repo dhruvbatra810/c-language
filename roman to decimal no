@@ -1,0 +1,74 @@
+// convert roman to decimal by dhruv batra
+
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+char a[30]="mcmxciv";
+int deci=0;
+int d=strlen(a);
+// printf("%d",(int)d);
+for(int i=d-1;i>=0;i--)
+{
+    if(a[i]=='x'&&a[i-1]=='i')
+    {
+        deci+=9;
+        i--;
+    }
+     else if(a[i]=='v'&&a[i-1]=='i')
+     {
+         deci+=4;
+        i--;
+     }
+     else if(a[i]=='l'&&a[i-1]=='x')
+     {
+         deci+=40;
+         i--;
+     }
+     else if(a[i]=='c'&&a[i-1]=='x')
+     {
+         deci+=90;
+         i--;
+     }
+     else if(a[i]=='d'&&a[i-1]=='c')
+     {
+         deci+=400;
+         i--;
+     }
+     else if(a[i]=='m'&&a[i-1]=='c')
+     {
+         deci+=900;
+         i--;
+     }
+     else 
+     {
+         switch(a[i])
+         {
+             case 'i':
+             deci+=1;
+             break;
+             case 'v':
+             deci+=5;
+             break;
+             case 'x':
+             deci+=10;
+             break;
+             case 'l':
+             deci+=50;
+             break;
+             case 'c':
+             deci+=100;
+             break;
+             case 'd':
+             deci+=500;
+             break;
+             case 'm':
+             deci+=1000;
+             break;
+             
+         }
+     }
+}
+printf("%d",deci);
+   return 0;
+}
