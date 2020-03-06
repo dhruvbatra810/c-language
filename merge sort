@@ -1,0 +1,62 @@
+//merge sort by dhruv batra
+#include <stdio.h>
+/* Include other headers as needed */
+int merge_sort(int start,int mid,int end,int *a)
+{
+  int p=start,q=mid+1,k=end;
+  int o[5];
+  int t=start;
+  while(p<=mid&&q<=end)
+  {
+    if(a[p]<=a[q])
+    {
+      o[t]=a[p];
+      p++;
+      
+    }
+    else
+    {
+      o[t]=a[q];
+      q++;
+    }
+    t++;
+  }
+  if(p>mid)
+  {
+    while(q<=end)
+    {
+      o[t++]=a[q];
+      q++;
+    }
+    
+  }
+  else
+    while(p<=mid)
+    {
+      o[t++]=a[p];
+      p++;
+    }
+    for(int i=start;i<end;i++)
+    a[i]=o[i];
+}
+int merger(int start,int end,int *a)
+{
+ int  mid=(start+end)/2;
+  if(start<end)
+  {
+    merger(start,mid,a);
+    merger(mid+1,end,a);
+    merge_sort(start,mid,end,a);
+  }
+}
+int main()
+{
+int a[5];
+  for(int i=0;i<5;i++)
+  scanf("%d",&a[i]);
+  merger(0,5,a);
+  for(int i=0;i<5;i++)
+  printf("%d ",a[i]);
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    return 0;
+}
