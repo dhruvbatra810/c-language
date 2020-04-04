@@ -1,0 +1,279 @@
+/*Input
+
+First line of input will contain a positive integer i.e. number of test cases. Each test case will contain multiple lines.
+
+First line will contain a positive integer N i.e. number of flights to choose. Next N lines will contain description of flights in format '{flight number} {departure time} {flight duration} {price}' . Departure time will be in format 'HH:mm' where HH is hour in 24 hour clock and mm is minutes. Flight duration will be in minutes.
+
+
+
+Output
+
+For each test case, print on a single line flight numbers of top three options for Mr. Gopal in decreasing order of his preference.
+
+The flight numbers should be separated by single space. There should be no space after last flight number on each line.
+
+
+
+Sample Input
+
+1
+6
+F1 07:35 135 300
+F2 08:30 165 350
+F3 05:36 195 270
+F4 18:20 155 350
+F5 11:35 205 300
+F6 15:35 215 270
+
+
+Sample Output
+
+F3 F6 F1
+ by dhruv batra*/
+ 
+#include <stdio.h>
+#include<stdlib.h>
+ typedef struct
+  {
+    char arrr;
+   long int timee;
+    int dur;
+    int price;
+ }flight;
+void merge1(flight *arr, int l, int m, int r)
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 =  r - m;
+
+    /* create temp arrays */
+   flight L[n1], R[n2];
+
+    /* Copy data to temp arrays L[] and R[] */
+    for (i = 0; i < n1; i++)
+    {
+        L[i]= arr[l + i];
+
+        // L[i]->arrr = arr[l + i]->arrr;
+        // L[i]->timee = arr[l + i]->timee;
+        // L[i]->dur = arr[l + i]->dur;
+        // L[i]->price = arr[l + i]->price;
+
+
+    }
+    for (j = 0; j < n2; j++)
+    {
+        R[j] = arr[m + 1+ j];
+    }
+
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0; // Initial index of first subarray
+    j = 0; // Initial index of second subarray
+    k = l; // Initial index of merged subarray
+    while (i < n1 && j < n2)
+    {
+        if ((L[i].dur <= R[j].dur)&&(L[i].price == R[j].price))
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else if((L[i].dur > R[j].dur)&&(L[i].price == R[j].price))
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    /* Copy the remaining elements of L[], if there
+       are any */
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    /* Copy the remaining elements of R[], if there
+      are any */
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void merge(flight *arr, int l, int m, int r)
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 =  r - m;
+
+    /* create temp arrays */
+   flight L[n1], R[n2];
+
+    /* Copy data to temp arrays L[] and R[] */
+    for (i = 0; i < n1; i++)
+    {
+        L[i]= arr[l + i];
+
+        // L[i]->arrr = arr[l + i]->arrr;
+        // L[i]->timee = arr[l + i]->timee;
+        // L[i]->dur = arr[l + i]->dur;
+        // L[i]->price = arr[l + i]->price;
+
+
+    }
+    for (j = 0; j < n2; j++)
+    {
+        R[j] = arr[m + 1+ j];
+    }
+
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0; // Initial index of first subarray
+    j = 0; // Initial index of second subarray
+    k = l; // Initial index of merged subarray
+    while (i < n1 && j < n2)
+    {
+        if (L[i].price <= R[j].price)
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    /* Copy the remaining elements of L[], if there
+       are any */
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    /* Copy the remaining elements of R[], if there
+       are any */
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+void mergeSort(flight *arr, int l, int r)
+{
+    if (l < r)
+    {
+        // Same as (l+r)/2, but avoids overflow for
+        // large l and h
+        int m = l+(r-l)/2;
+
+        // Sort first and second halves
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+
+        merge(arr, l, m, r);
+    }
+}
+void mergeSort1(flight *arr, int l, int r)
+{
+    if (l < r)
+    {
+        // Same as (l+r)/2, but avoids overflow for
+        // large l and h
+        int m = l+(r-l)/2;
+
+        // Sort first and second halves
+        mergeSort1(arr, l, m);
+        mergeSort1(arr, m+1, r);
+
+        merge1(arr, l, m, r);
+    }
+}
+  void printArray(flight A[], int size)
+{
+    int i;
+    for (i=0; i < size; i++)
+    {
+        // printf("%c ", A[i].arrr);
+        // printf("%ld ",A[i].timee);
+        printf("%d ",A[i].dur);
+        printf("%d ",A[i].price);
+    printf("\n");
+    }
+
+
+}
+void smallest(flight *p,int start,int end)
+{
+    flight temp;
+    for(int i=0;i<=end;i++)
+    {
+        if(p[i].price==p[i+1].price&&p[i].dur>p[i+1].dur)
+        {
+            temp=p[i];
+            p[i]=p[i+1];
+            p[i+1]=temp;
+        }
+    }
+
+}
+void smallest1(flight *p,int start,int end)
+{
+    flight temp;
+    for(int i=0;i<=end;i++)
+    {
+        if(p[i].dur==p[i+1].dur&&p[i].timee>p[i+1].timee)
+        {
+            temp=p[i];
+            p[i]=p[i+1];
+            p[i+1]=temp;
+        }
+    }
+
+}
+
+int main()
+{
+
+
+  int casee;
+  scanf("%d",&casee);
+//   printf("%d",casee);
+  for(int i=0;i<casee;i++)
+  {
+  int no;
+  scanf("%d",&no);
+//   printf("%d",no);
+  flight *p=(flight *)malloc(no*sizeof(flight));
+    for(int j=0;j<no;j++)
+    {
+    scanf(" %c",&(p+j)->arrr);
+    //   printf(" %s",(p+j)->arr);
+        scanf("%ld",&(p+j)->timee);
+        // printf("%d",(p)->timee);
+                   scanf("%d",&(p+j)->dur);
+        //   printf("%d",(p+j)->dur);
+       scanf("%d",&(p+j)->price);
+        // printf("%d",(p+j)->price);
+    }
+      mergeSort(p, 0, no-1);
+     printf("\nSorted array is \n");
+    //printArray(p,no);
+    //  mergeSort1(p, 0, 2);
+      smallest(p,0,2);
+      //printArray(p,no);
+      smallest1(p,0,2);
+           printArray(p,no);
+
+  }
+
+    return 0;
+}
