@@ -1,0 +1,59 @@
+/* c question
+sample input
+10       as size
+-6 7 13 10 -8 15 5 -9 2 -1
+
+sample output
+7 13 10 15 5 2 -6 -8 -9 -1
+*/
+#include <stdio.h>
+#include<stdlib.h>
+void function(int *p,int size)
+{
+    
+    int i=size-1;
+    int q;
+while(i>=0)
+{
+  while(p[i]<0&&i>=0)
+  {
+     i--;
+  }
+   if(i<0)
+    break;
+    q=i;
+   while(p[q]>0&&q>=0)
+ {
+     q--;
+ }
+  if(q<0)
+  break;
+  while(q!=i)
+ {
+     int temp=p[q];
+     p[q]=p[q+1];
+     p[q+1]=temp;
+     q++;
+ }
+ i--;
+ for(int i=0;i<size;i++)
+printf("%d ",*(p+i));
+printf("%d",i);
+printf("\n");
+
+ 
+    }
+}
+int main()
+{
+int size;
+scanf("%d",&size);
+int *p=(int *)malloc(sizeof(int)*size);
+for(int i=0;i<size;i++)
+scanf("%d",p+i);
+function(p,size);
+printf("final\n");
+for(int i=0;i<size;i++)
+printf("%d",*(p+i));
+    return 0;
+}
