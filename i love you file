@@ -2,7 +2,7 @@
 int main()
 {
     int a,b,c;
-    printf("nter the no");
+    printf("how much big you love ,enter 0-10");
     scanf("%d",&a);
       for(b=1;b<=a*3;b++)
     {
